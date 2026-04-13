@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { companyInfo, navigation } from "../../app/lib/data";
-import { Language } from "../../app/lib/types";
-import { getTranslations } from "../../app/lib/i18n";
+import { companyInfo, navigation } from "../lib/data";
+import { Language } from "../lib/types";
+import { getTranslations } from "../lib/i18n";
 
 interface FooterProps {
   lang: Language;

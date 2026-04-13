@@ -1,17 +1,17 @@
 "use client";
 
-import Header from "../../components/components/Header";
-import Hero from "../../components/components/Hero";
-import CategoryBox from "../../components/components/CategoryBox";
-import ProductCard from "../../components/components/ProductCard";
-import BlogCard from "../../components/components/BlogCard";
-import Footer from "../../components/components/Footer";
-import { categories, products, blogPosts } from "../lib/data";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import CategoryBox from "@/components/CategoryBox";
+import ProductCard from "@/components/ProductCard";
+import BlogCard from "@/components/BlogCard";
+import Footer from "@/components/Footer";
+import { categories, products, blogPosts } from "@/lib/data";
 
 export default function HomePage() {
   return (
     <>
-      <Header lang="en" />
+      <Navbar lang="en" />
       <Hero lang="en" />
 
       <div className="py-16 bg-white">

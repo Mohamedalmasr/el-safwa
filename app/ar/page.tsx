@@ -1,63 +1,73 @@
 "use client";
 
-import Header from "../../../components/components/Header";
-import Footer from "../../../components/components/Footer";
-import ProductCard from "../../../components/components/ProductCard";
-import { products } from "../../lib/data";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import CategoryBox from "@/components/CategoryBox";
+import ProductCard from "@/components/ProductCard";
+import BlogCard from "@/components/BlogCard";
+import Footer from "@/components/Footer";
+import { categories, products, blogPosts } from "@/lib/data";
 
-export default function GalleryPage() {
+export default function HomePage() {
   return (
     <>
-      <Header lang="en" />
+      <Navbar lang="ar" />
+      <Hero lang="ar" />
 
-      <div
-        className="bg-cover bg-center py-20 mt-16"
-        style={{ backgroundImage: "url(/images/all-bg-title.jpg)" }}
-      >
+      <div className="py-16 bg-white" dir="rtl">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-white mb-4">Gallery</h2>
-            <nav className="text-white">
-              <a href="/en" className="hover:text-[#b0b435]">
-                Home
-              </a>
-              <span className="mx-2">/</span>
-              <span className="text-[#b0b435]">Gallery</span>
-            </nav>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {categories.map((category) => (
+              <CategoryBox key={category.id} category={category} lang="ar" />
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="py-16 bg-gray-50">
+      <div className="py-16 bg-gray-50" dir="rtl">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">
-              Our Gallery
+              البقوليات والفواكة والخضروات
             </h1>
-            <p className="text-gray-600">
-              All previous products are of Egyptian origin, 100% organic and
-              non-GMO.
-            </p>
+            <p className="text-gray-600">للاستفسار عن الأسعار، تواصل معنا.</p>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <button className="px-6 py-2 bg-[#b0b435] text-white rounded-full hover:bg-[#9a9c2d] transition-colors">
-              All
+              الكل
             </button>
             <button className="px-6 py-2 border border-[#b0b435] text-[#b0b435] rounded-full hover:bg-[#b0b435] hover:text-white transition-colors">
-              Legumes
+              البقوليات
             </button>
             <button className="px-6 py-2 border border-[#b0b435] text-[#b0b435] rounded-full hover:bg-[#b0b435] hover:text-white transition-colors">
-              Fruits
+              الفواكة
             </button>
             <button className="px-6 py-2 border border-[#b0b435] text-[#b0b435] rounded-full hover:bg-[#b0b435] hover:text-white transition-colors">
-              Vegetables
+              الخضروات
             </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} lang="en" />
+              <ProductCard key={product.id} product={product} lang="ar" />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="py-16 bg-white" dir="rtl">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">الجودة</h1>
+            <p className="text-gray-600">
+              جميع المنتجات السابقة مصرية المصدر، 100% طبيعية وغير معدلة
+              وراثياً.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {blogPosts.map((post) => (
+              <BlogCard key={post.id} post={post} lang="ar" />
             ))}
           </div>
         </div>
@@ -85,7 +95,7 @@ export default function GalleryPage() {
         </div>
       </div>
 
-      <Footer lang="en" />
+      <Footer lang="ar" />
     </>
   );
 }

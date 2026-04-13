@@ -1,13 +1,13 @@
 "use client";
 
-import Header from "../../../components/components/Header";
-import Footer from "../../../components/components/Footer";
-import { companyInfo } from "../../lib/data";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { companyInfo } from "@/lib/data";
 
 export default function ContactPage() {
   return (
     <>
-      <Header lang="ar" />
+      <Navbar lang="ar" />
 
       <div
         className="bg-cover bg-center py-20 mt-16"

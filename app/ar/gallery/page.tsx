@@ -1,14 +1,14 @@
 "use client";
 
-import Header from "../../../components/components/Header";
-import Footer from "../../../components/components/Footer";
-import ProductCard from "../../../components/components/ProductCard";
-import { products } from "../../lib/data";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
+import { products } from "@/lib/data";
 
 export default function GalleryPage() {
   return (
     <>
-      <Header lang="ar" />
+      <Navbar lang="ar" />
 
       <div
         className="bg-cover bg-center py-20 mt-16"

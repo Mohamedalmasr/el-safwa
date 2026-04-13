@@ -1,8 +1,8 @@
 "use client";
 
-import { heroSlides, companyInfo } from "../../app/lib/data";
-import { Language } from "../../app/lib/types";
-import { getTranslations } from "../../app/lib/i18n";
+import { heroSlides, companyInfo } from "../lib/data";
+import { Language } from "../lib/types";
+import { getTranslations } from "../lib/i18n";
 
 interface HeroProps {
   lang: Language;

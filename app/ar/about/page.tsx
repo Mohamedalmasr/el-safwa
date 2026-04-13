@@ -1,12 +1,12 @@
 "use client";
 
-import Header from "../../../components/components/Header";
-import Footer from "../../../components/components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   return (
     <>
-      <Header lang="ar" />
+      <Navbar lang="ar" />
 
       <div
         className="bg-cover bg-center py-20 mt-16"
