@@ -1,72 +1,57 @@
 "use client";
 
-import { heroSlides, companyInfo } from "../lib/data";
-import { Language } from "../lib/types";
-import { getTranslations } from "../lib/i18n";
+import { useState, useEffect } from "react";
+import { heroSlides } from "@/lib/data";
+import { Language } from "@/lib/types";
 
 interface HeroProps {
   lang: Language;
 }
 
 export default function Hero({ lang }: HeroProps) {
-  const t = getTranslations(lang);
-  const isRTL = lang === "ar";
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="relative h-[600px] overflow-hidden mt-16">
+      {/* Slides */}
       {heroSlides.map((slide, index) => (
-        <div key={index} className="absolute inset-0">
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentSlide ? "opacity-100" : "opacity-0"
+          }`}
+        >
           <img
             src={slide.image}
             alt={slide.alt}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <div className="text-center text-white px-4">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                {lang === "ar" ? "مرحباً بكم في" : "Welcome To"} <br />
-                {lang === "ar" ? "الصفورا" : "EL SAFWA"}
-              </h1>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto">
-                {lang === "ar"
-                  ? companyInfo.descriptionAr
-                  : companyInfo.description}
-              </p>
-            </div>
-          </div>
         </div>
       ))}
 
-      <button className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all">
-        <svg
-          className="w-6 h-6 text-gray-800"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-      <button className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-3 rounded-full hover:bg-opacity-75 transition-all">
-        <svg
-          className="w-6 h-6 text-gray-800"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
+      <div className="absolute inset-0 bg-black/65 pointer-events-none" />
+
+      {/* Shared overlay - one for all slides */}
+      <div className="absolute inset-0 bg-black/40 flex items-center pointer-events-none">
+        <div className={`text-white px-4 md:px-8 md:pr-16 ${lang === "ar" ? "text-right" : "text-left"} max-w-2xl`}>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <span className="text-white">{lang === "ar" ? "مرحباً بكم في" : "Welcome To"}</span>{' '}
+            <span className="text-[#b0b435]">{lang === "ar" ? "الصفورا" : "EL SAFWA"}</span>
+          </h1>
+          <p className="text-lg md:text-xl leading-relaxed opacity-90">
+            {lang === "ar"
+              ? "شركة الصفورا للتصدير هي شركة مصرية متخصصة في تصدير مجموعة واسعة من المنتجات الزراعية والصناعية إلى الأسواق العالمية. تركز الشركة على تقديم منتجات عالية الجودة تتوافق مع المعايير الدولية، مما يساهم في سمعة المنتجات المصرية في الأسواق الخارجية. تهدف الصفورة للتصدير إلى بناء شراكات قوية مع عملائها من خلال الالتزام بالجودة والمواعيد والشفافية في التعاملات التجارية."
+              : "EL SAFWA FOR EXPORT is an Egyptian company specialized in exporting a wide range of agricultural and industrial products to global markets. The company focuses on providing high-quality products that meet international standards, contributing to the reputation of Egyptian products in foreign markets. EL SAFWA FOR EXPORT aims to build strong partnerships with its clients by adhering to quality, deadlines, and transparency in business dealings."}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

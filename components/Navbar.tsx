@@ -29,7 +29,6 @@ export default function Navbar({ lang }: NavbarProps) {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const currentLang = lang === "ar" ? "en" : "ar";
   const currentPath =
     pathname === "/"
